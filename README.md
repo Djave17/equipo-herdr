@@ -71,7 +71,7 @@ Añade `-DryRun` a cualquier comando para ver lo que haría sin ejecutarlo.
 
 `instalar` crea `.agents/equipo/` en el workspace:
 
-- `equipo.json`: nombre, prefijo de terminales, contexto del proyecto y, por rol, los cambios sobre los valores por defecto (`modelo`, `esfuerzo`, `skills`, `grupo`, `remoto`, `persistente`, `cli`).
+- `equipo.json`: nombre, prefijo de terminales, contexto del proyecto, `revision` opcional (alcance, umbrales y severidad de las revisiones; por defecto los globales del kit) y, por rol, los cambios sobre los valores por defecto (`modelo`, `esfuerzo`, `skills`, `grupo`, `remoto`, `persistente`, `cli`).
 - `roles/<rol>.md`: reglas propias del proyecto, que se agregan al rol genérico.
 - `equipo.ps1`: atajo al kit.
 - `trabajo/` y `.generado/`: artefactos locales, ignorados por git.

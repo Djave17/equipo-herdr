@@ -127,6 +127,7 @@ foreach ($p in $Def.roles.PSObject.Properties) {
     $over = if ($Cfg.roles) { $Cfg.roles.PSObject.Properties[$p.Name] } else { $null }
     $Roles[$p.Name] = Merge-Objeto $p.Value $(if ($over) { $over.Value } else { $null })
 }
+$Revision = Merge-Objeto $Def.revision $Cfg.revision
 function Get-Terminal([string]$Rol) { "$Px-$Rol" }
 
 # ---------------------------------------------------------------- generados
@@ -148,6 +149,19 @@ function Expand-Plantilla([string]$Texto, $Reemplazos) {
     $Texto
 }
 
+function Format-Revision {
+    # Convierte la seccion "revision" (kit + equipo.json) en las reglas que leen sol y revisor.
+    $t = @("- **Alcance:** $($Revision.alcance)", '- **Umbrales** (maximos, salvo coberturaDelCambio, que es minimo en %):')
+    foreach ($p in $Revision.umbrales.PSObject.Properties) { $t += "  - ``$($p.Name)``: $($p.Value)" }
+    $t += "- **Tolerancia:** $($Revision.tolerancia) % sobre el umbral."
+    $t += '- **Bloqueante** (reabre ronda):'
+    $t += @($Revision.bloqueante | ForEach-Object { "  - $_" })
+    $t += '- **Sugerencia** (no reabre ronda):'
+    $t += @($Revision.sugerencia | ForEach-Object { "  - $_" })
+    $t += '- Cada hallazgo cita la regla o el umbral con el valor medido (por ejemplo, `complejidad 14 > 10`). Sin dato medido ni regla concreta, es sugerencia.'
+    $t -join "`n"
+}
+
 function Update-Generado {
     # Compone lo que leen los agentes: kit generico + equipo.json + reglas locales del workspace.
     $rep = Get-Reemplazos
@@ -159,6 +173,7 @@ function Update-Generado {
     }
     $contexto = @($Cfg.contexto | Where-Object { $_ }) | ForEach-Object { "- $_" }
     $rep['{{TABLA}}'] = $filas -join "`n"
+    $rep['{{REVISION}}'] = Format-Revision
     $rep['{{CONTEXTO}}'] = if ($contexto) { $contexto -join "`n" } else { '- Respeta el AGENTS.md/CLAUDE.md del workspace y de cada repositorio.' }
     Write-Texto (Join-Path $DirGen 'EQUIPO.md') (Expand-Plantilla (Read-Texto (Join-Path $Kit 'EQUIPO.md')) $rep)
     Write-Texto (Join-Path $DirGen 'PROTOCOLO.md') (Expand-Plantilla (Read-Texto (Join-Path $Kit 'PROTOCOLO.md')) $rep)
