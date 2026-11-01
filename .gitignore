@@ -1,0 +1,4 @@
+# Artefactos locales que no pertenecen al kit
+*.zip
+.generado/
+trabajo/

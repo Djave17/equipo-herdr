@@ -1,0 +1,61 @@
+{
+  "grupos": {
+    "negocio": "{{NOMBRE}} Negocio",
+    "desarrollo": "{{NOMBRE}} Desarrollo",
+    "diseno": "{{NOMBRE}} Diseño"
+  },
+  "roles": {
+    "plan": {
+      "grupo": "negocio", "cli": "claude", "modelo": "claude-opus-5-5", "esfuerzo": "high",
+      "remoto": true, "persistente": true,
+      "descripcion": "Planificador y orquestador",
+      "skills": [
+        "`to-issues`: solo su método de cortes verticales y criterios de aceptación; no publiques issues, escribe el resultado en `plan.md`.",
+        "`grill-with-docs`: solo si el objetivo es ambiguo, para entrevistar al usuario antes de planificar.",
+        "`zoom-out`: si no conoces el área afectada."
+      ]
+    },
+    "docs": {
+      "grupo": "negocio", "cli": "codex", "modelo": "gpt-6-luna", "esfuerzo": "low",
+      "remoto": false, "persistente": true,
+      "descripcion": "Documentador y consultor de negocio y código del usuario",
+      "skills": [
+        "`zoom-out`: para explicar cómo encaja una pieza en el sistema y en el negocio.",
+        "`grill-with-docs`: solo sus formatos `CONTEXT-FORMAT.md` (para `CONTEXT.md`) y `ADR-FORMAT.md` (para `docs/adr/`), no la entrevista."
+      ]
+    },
+    "luna": {
+      "grupo": "desarrollo", "cli": "codex", "modelo": "gpt-6-luna", "esfuerzo": "high",
+      "remoto": false, "persistente": false,
+      "descripcion": "Codificador",
+      "skills": [
+        "`tdd`: obligatoria; ciclo rojo → verde → refactor en cada corte.",
+        "`diagnose`: si el encargo es un bug."
+      ]
+    },
+    "sol": {
+      "grupo": "desarrollo", "cli": "codex", "modelo": "gpt-6.1-sol", "esfuerzo": "low",
+      "remoto": false, "persistente": false,
+      "descripcion": "Verificador de tests y principios de arquitectura",
+      "skills": [
+        "`tdd`: como criterio para juzgar si las pruebas verifican comportamiento y no implementación."
+      ]
+    },
+    "revisor": {
+      "grupo": "desarrollo", "cli": "claude", "modelo": "claude-opus-5-5", "esfuerzo": "medium",
+      "remoto": false, "persistente": false,
+      "descripcion": "Revisor de objetivos del plan, arquitectura y SOLID",
+      "skills": [
+        "`engineering:architecture`: evalúa las decisiones de diseño y sus compromisos."
+      ]
+    },
+    "diseno": {
+      "grupo": "diseno", "cli": "claude", "modelo": "claude-opus-5-5", "esfuerzo": "high",
+      "remoto": true, "persistente": false,
+      "descripcion": "Diseño UI/UX",
+      "skills": [
+        "`impeccable`: es la skill principal para diseñar, criticar y auditar la UI."
+      ]
+    }
+  }
+}
