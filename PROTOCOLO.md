@@ -93,6 +93,7 @@ El superior responde en `consultas.md` y con `hc send <consultante> "RESPUESTA: 
 
 - Respeta el `AGENTS.md`/`CLAUDE.md` del workspace y de cada repositorio, y la sección *Contexto del workspace* de `{{EQUIPO}}`.
 - Nadie hace commit, push ni PR sin pedido explícito del usuario transmitido por `plan`. Preserva los cambios locales ajenos.
+- Cuando se pidan, los commits usan Conventional Commits, van en una rama propia y no incluyen a ningún agente de IA como autor o colaborador (`Co-Authored-By`, "Generated with ...").
 - `sol` y `revisor` son de solo lectura sobre el código. `diseno` no edita código salvo encargo explícito. `docs` no edita código fuente.
 - No declares éxito sin evidencia. Copia la salida real de las pruebas. Si un motor o servicio no está disponible, reporta el límite.
 - Si vas a pedir un permiso o estás bloqueado, notifica `BLOQUEADO` a `{{plan}}`; no lo sortees.
