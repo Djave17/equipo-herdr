@@ -73,6 +73,12 @@ Detalle de las 11 medidas en [EFICIENCIA.md](EFICIENCIA.md).
 
 Ningún agente hace commit, push ni PR salvo que lo pidas. Cuando lo pidas, se usa [Conventional Commits](https://www.conventionalcommits.org/) y el trabajo va en una rama propia.
 
+Los commits, PR y merges **no incluyen a ningún agente de IA como autor o colaborador**: sin `Co-Authored-By: Claude`, sin "Generated with Claude Code" ni firmas de Codex. La autoría es siempre de la persona. Para reforzarlo en Claude Code, desactiva la firma automática en `~/.claude/settings.json`:
+
+```json
+{ "attribution": { "commit": "", "pr": "" }, "includeCoAuthoredBy": false }
+```
+
 ## Instalación
 
 ```powershell
