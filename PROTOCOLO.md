@@ -8,14 +8,32 @@ Solo `plan` lanza agentes, y lo hace siempre con `{{LANZADOR}}`. Ningún otro ro
 ## Flujo
 
 1. **plan** recibe el objetivo del usuario, aclara las dudas con él y escribe `plan.md` en la carpeta de la tarea.
-2. **diseno** (solo si hay UI) escribe `diseno.md`. `plan` lo integra al plan.
+2. **diseno** (solo si hay UI nueva o rediseño) escribe `diseno.md`. `plan` lo integra al plan.
 3. **luna** o **haiku** (el codificador que elija `plan` para el corte) implementa con TDD y escribe `implementacion.md`, que incluye los archivos tocados y los comandos de prueba con su salida real.
 4. **sol** ejecuta las pruebas y verifica los principios de arquitectura. Escribe `verificacion-N.md` con el veredicto `APROBADO` o `RECHAZADO`.
-5. **revisor** compara el resultado con los objetivos del plan, la arquitectura y SOLID. Escribe `revision-N.md`. Si hay hallazgos, los **devuelve al codificador de la ronda** y se repite desde el paso 3.
-6. **docs** documenta lo aprobado y escribe `docs.md`.
+5. **revisor** (si el riesgo del corte lo requiere; ver *Revisión según riesgo*) compara el resultado con los objetivos del plan, la arquitectura y SOLID. Escribe `revision-N.md`. Si hay hallazgos, los **devuelve al codificador de la ronda** y se repite desde el paso 3.
+6. **docs** (solo si `plan.md` indica documentación que tocar) documenta lo aprobado y escribe `docs.md`.
 7. **plan** verifica los artefactos y entrega un resumen al usuario.
 
-Se permiten como máximo 3 rondas de corrección por tarea. Después, `plan` escala al usuario con los hallazgos pendientes.
+Se permiten como máximo 2 rondas de corrección por tarea; solo los hallazgos bloqueantes reabren ronda. Después, `plan` escala al usuario con los hallazgos pendientes.
+
+## Revisión según riesgo
+
+`plan` clasifica cada corte en `plan.md`:
+
+| Riesgo | Ejemplos | Revisión |
+|---|---|---|
+| Mecánico | Renombrados, mover o borrar archivos, imports, configuración | Solo `sol` |
+| Normal | Lógica de negocio acotada, endpoints siguiendo un patrón existente | `sol` + `revisor` |
+| Alto | Arquitectura, persistencia, seguridad, concurrencia, contratos públicos | `sol` + `revisor` completos |
+
+## Eficiencia
+
+Buscamos el mejor resultado con el menor gasto necesario (detalle en `EFICIENCIA.md` del kit):
+
+- Pruebas en modo silencioso; en artefactos y mensajes solo el resumen y los fallos (por ejemplo `-q` y `| Select-Object -Last 40`). Nunca logs completos.
+- Artefactos con el formato pedido, breves, sin repetir lo que ya está en otro artefacto: remite a él.
+- Lee solo lo que el encargo indica; usa el índice de código antes de explorar.
 
 **plan es el juez.** Cuestiona los objetivos y los resultados, no aprueba sin evidencia y decide las discrepancias técnicas entre agentes (por ejemplo, entre `luna` y `revisor`). Su veredicto es final dentro del equipo. Las decisiones de negocio o de alcance son siempre del usuario. Quien discrepe de un hallazgo no lo ignora: argumenta en su artefacto y `plan` decide.
 

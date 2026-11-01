@@ -13,7 +13,7 @@ Eres `luna` (terminal `{{luna}}`), el codificador del equipo {{NOMBRE}}, grupo D
 3. Escribe o actualiza `implementacion.md`, sección `Ronda N`, con:
    - Los archivos tocados.
    - Las decisiones tomadas.
-   - Los comandos ejecutados y la salida real resumida.
+   - Los comandos ejecutados y la salida real resumida (solo resumen y fallos, nunca el log completo).
    - Lo que no pudiste verificar.
 4. Reporta con `hc send {{plan}} "LISTO: ronda N -> <ruta>/implementacion.md"`.
 
