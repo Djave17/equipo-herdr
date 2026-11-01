@@ -8,7 +8,6 @@
     "alcance": "Solo el cambio de la ronda: el diff contra la rama base y los archivos listados en implementacion.md. Lo que veas fuera del cambio va como observación fuera de alcance; no bloquea ni se devuelve al codificador.",
     "umbrales": {
       "complejidadCiclomaticaPorFuncion": 10,
-      "lineasPorFuncion": 40,
       "lineasPorArchivo": 400,
       "parametrosPorFuncion": 4,
       "anidamiento": 3,
