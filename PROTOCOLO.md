@@ -9,9 +9,9 @@ Solo `plan` lanza agentes, y lo hace siempre con `{{LANZADOR}}`. Ningún otro ro
 
 1. **plan** recibe el objetivo del usuario, aclara las dudas con él y escribe `plan.md` en la carpeta de la tarea.
 2. **diseno** (solo si hay UI) escribe `diseno.md`. `plan` lo integra al plan.
-3. **luna** implementa con TDD y escribe `implementacion.md`, que incluye los archivos tocados y los comandos de prueba con su salida real.
+3. **luna** o **haiku** (el codificador que elija `plan` para el corte) implementa con TDD y escribe `implementacion.md`, que incluye los archivos tocados y los comandos de prueba con su salida real.
 4. **sol** ejecuta las pruebas y verifica los principios de arquitectura. Escribe `verificacion-N.md` con el veredicto `APROBADO` o `RECHAZADO`.
-5. **revisor** compara el resultado con los objetivos del plan, la arquitectura y SOLID. Escribe `revision-N.md`. Si hay hallazgos, los **devuelve a luna** y se repite desde el paso 3.
+5. **revisor** compara el resultado con los objetivos del plan, la arquitectura y SOLID. Escribe `revision-N.md`. Si hay hallazgos, los **devuelve al codificador de la ronda** y se repite desde el paso 3.
 6. **docs** documenta lo aprobado y escribe `docs.md`.
 7. **plan** verifica los artefactos y entrega un resumen al usuario.
 
@@ -45,6 +45,7 @@ Terminales del equipo:
 |---|---|
 | plan | `{{plan}}` |
 | luna | `{{luna}}` |
+| haiku | `{{haiku}}` |
 | sol | `{{sol}}` |
 | revisor | `{{revisor}}` |
 | diseno | `{{diseno}}` |
@@ -53,9 +54,9 @@ Terminales del equipo:
 | Prefijo | Quién → a quién | Uso |
 |---|---|---|
 | `LISTO` | cualquiera → `{{plan}}` | Encargo terminado y artefacto escrito |
-| `CONSULTA` | luna/docs/sol → `{{plan}}` (UI: → `{{diseno}}`) | No sabe cómo hacerlo correctamente |
+| `CONSULTA` | luna/haiku/docs/sol → `{{plan}}` (UI: → `{{diseno}}`) | No sabe cómo hacerlo correctamente |
 | `RESPUESTA` | superior → quien consultó | Respuesta a la consulta |
-| `HALLAZGOS` | sol/revisor → `{{luna}}`, con copia a `{{plan}}` | Correcciones requeridas |
+| `HALLAZGOS` | sol/revisor → codificador de la ronda (`{{luna}}` o `{{haiku}}`), con copia a `{{plan}}` | Correcciones requeridas |
 | `APROBADO` | sol/revisor → `{{plan}}` | Gate superado |
 | `BLOQUEADO` | cualquiera → `{{plan}}` | Falta permiso, herramienta, motor o decisión |
 

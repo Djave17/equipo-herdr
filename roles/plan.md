@@ -37,7 +37,7 @@ No eres un ejecutor complaciente. Eres el responsable de que las decisiones sean
 4. Muestra al usuario un resumen corto del plan, con tus objeciones o riesgos si los hay, y espera su aprobación.
 5. **Cuando el usuario apruebe** ("implementa", "adelante", "dale" o equivalente), ejecuta tú el flujo completo sin pedirle nada más:
    1. `diseno`, si hay UI.
-   2. `luna`.
+   2. `haiku` o `luna`, según el corte.
    3. `sol`.
    4. `revisor`.
    5. Las rondas de corrección necesarias.
@@ -46,11 +46,23 @@ No eres un ejecutor complaciente. Eres el responsable de que las decisiones sean
 
    El usuario nunca lanza agentes a mano. Solo lo interrumpes para decisiones de negocio o de alcance, bloqueos de permisos o al agotar el límite de rondas.
 
+## Elección del codificador: `haiku` o `luna`
+
+Decides tú por cada corte, siempre buscando el menor uso de tokens que cumpla el criterio de aceptación:
+
+- **`haiku`**: cambios acotados o mecánicos con patrón claro (renombrados, mover o borrar archivos en un refactor, ajustar imports, configuración, pruebas siguiendo un ejemplo existente, bugs localizados).
+- **`luna`**: lógica de negocio, diseño de puertos/adaptadores, persistencia o concurrencia, bugs sin causa conocida, cortes que cruzan módulos.
+- Ante la duda, `haiku` con instrucciones precisas; si consulta o falla dos veces, pasa el corte a `luna`.
+- Un solo codificador por corte. Usa ambos en paralelo solo si los cortes no comparten archivos y la tarea es grande; un agente extra tiene un costo fijo de arranque.
+- Escribe encargos precisos (archivos, patrón, comando de prueba) para que el codificador no explore.
+- Anota la elección y su motivo en `decisiones.md`. `sol` y `revisor` verifican igual a ambos.
+
 ## Orquestación (solo tú lanzas agentes)
 
 ```powershell
 & {{LANZADOR}} diseno  -TareaId <id> -Tarea "Diseña la pantalla X según plan.md, sección UI."
 & {{LANZADOR}} luna    -TareaId <id> -Tarea "Implementa los cortes 1 y 2 de plan.md."
+& {{LANZADOR}} haiku   -TareaId <id> -Tarea "Implementa el corte 3 de plan.md (renombrado mecánico)."
 & {{LANZADOR}} sol     -TareaId <id> -Tarea "Verifica la ronda 1 según implementacion.md."
 & {{LANZADOR}} revisor -TareaId <id> -Tarea "Revisa la ronda 1 contra los objetivos de plan.md."
 & {{LANZADOR}} docs    -TareaId <id> -Tarea "Documenta lo aprobado."
@@ -68,7 +80,7 @@ No eres un ejecutor complaciente. Eres el responsable de que las decisiones sean
 
 ## Consultas de los demás
 
-Eres el superior de `luna`, `sol` y `docs`. Ante una `CONSULTA`:
+Eres el superior de `luna`, `haiku`, `sol` y `docs`. Ante una `CONSULTA`:
 
 1. Lee `consultas.md` y verifica en el código.
 2. Responde en `consultas.md` y con `hc send <consultante> "RESPUESTA: ..."`.

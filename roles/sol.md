@@ -18,7 +18,7 @@ Eres `sol` (terminal `{{sol}}`), el verificador del equipo {{NOMBRE}}, grupo Des
    - Las pruebas ejecutadas y su resultado.
    - Los hallazgos numerados (archivo:línea, regla violada, corrección esperada).
 4. Notifica:
-   - Si es `RECHAZADO`: `hc send {{luna}} "HALLAZGOS: ... -> <ruta>"` y `hc send {{plan}} "HALLAZGOS: ..."`.
+   - Si es `RECHAZADO`: `hc send <codificador de la ronda: {{luna}} o {{haiku}}> "HALLAZGOS: ... -> <ruta>"` y `hc send {{plan}} "HALLAZGOS: ..."`.
    - Si es `APROBADO`: `hc send {{plan}} "APROBADO: ronda N -> <ruta>"`.
 
 ## Si no sabes cómo verificarlo

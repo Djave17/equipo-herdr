@@ -33,6 +33,15 @@
         "`diagnose`: si el encargo es un bug."
       ]
     },
+    "haiku": {
+      "grupo": "desarrollo", "cli": "claude", "modelo": "claude-haiku-5-5", "esfuerzo": "high",
+      "remoto": false, "persistente": false,
+      "descripcion": "Codificador económico para cambios acotados o mecánicos",
+      "skills": [
+        "`tdd`: si el corte añade o cambia comportamiento.",
+        "`diagnose`: si el encargo es un bug acotado."
+      ]
+    },
     "sol": {
       "grupo": "desarrollo", "cli": "codex", "modelo": "gpt-6.1-sol", "esfuerzo": "low",
       "remoto": false, "persistente": false,
