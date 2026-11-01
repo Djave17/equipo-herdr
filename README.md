@@ -1,15 +1,16 @@
 <!-- Propósito: presentación e instalación del kit equipo-herdr para personas. Las instrucciones para agentes están en SKILL.md. -->
 # equipo-herdr
 
-Un equipo de seis agentes de IA que trabajan juntos sobre herdr (`hc`). Funciona en cualquier workspace: se instala una vez por máquina y luego cada proyecto solo necesita un archivo de configuración.
+Un equipo de siete agentes de IA que trabajan juntos sobre herdr (`hc`). Funciona en cualquier workspace: se instala una vez por máquina y luego cada proyecto solo necesita un archivo de configuración.
 
 | Grupo (espacio herdr) | Rol | Modelo por defecto | Función |
 |---|---|---|---|
 | Negocio | `plan` | Claude Opus 5.5 · high | Planifica y orquesta. Es crítico y juez de las decisiones. Accesible por Remote Control. |
 | Negocio | `docs` | Codex GPT-6 Luna · low | Documenta y responde preguntas de negocio y código. |
 | Desarrollo | `luna` | Codex GPT-6 Luna · high | Codifica con TDD. |
-| Desarrollo | `sol` | Codex GPT-6.1 Sol · low | Ejecuta las pruebas y verifica la arquitectura. |
-| Desarrollo | `revisor` | Claude Opus 5.5 · medium | Verifica los objetivos del plan, la arquitectura y SOLID. Si encuentra problemas, devuelve el trabajo a `luna`. |
+| Desarrollo | `haiku` | Claude Haiku 5.5 · high | Codifica cortes acotados o mecánicos. `plan` elige entre `haiku` y `luna` por corte. |
+| Desarrollo | `sol` | Codex GPT-6.1 Sol · medium | Ejecuta las pruebas y verifica la arquitectura. |
+| Desarrollo | `revisor` | Claude Opus 5.5 · medium | Verifica los objetivos del plan, la arquitectura y SOLID. Interviene según el riesgo del corte. Si encuentra problemas, devuelve el trabajo al codificador. |
 | Diseño | `diseno` | Claude Opus 5.5 · high | Diseño UI/UX. Accesible por Remote Control. |
 
 **Flujo:**
@@ -22,6 +23,8 @@ Un equipo de seis agentes de IA que trabajan juntos sobre herdr (`hc`). Funciona
    4. `revisor`, con rondas de corrección.
    5. `docs`.
    6. Al final, `plan` te entrega un resumen.
+
+El equipo busca el mejor resultado con el menor gasto necesario: revisión según riesgo, contexto limpio entre tareas, salidas recortadas y costo medido por tarea. Detalle en [EFICIENCIA.md](EFICIENCIA.md).
 
 Si un agente no sabe cómo hacer algo, consulta a un superior. `plan` arbitra las discrepancias. Las decisiones de negocio siempre son tuyas.
 

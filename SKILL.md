@@ -1,6 +1,6 @@
 ---
 name: equipo-herdr
-description: Equipo de agentes plug and play sobre herdr (hc) para cualquier workspace. Seis roles con modelo, esfuerzo y skills por defecto, organizados en tres grupos (Negocio, Desarrollo, Diseño). Usar para instalar el equipo en un workspace nuevo, lanzarlo o arrancarlo con herdr, cambiar modelos/skills por rol, o cuando el usuario mencione herdr, hc, equipo de agentes, orquestador, plan/luna/sol/revisor/diseno/docs.
+description: Equipo de agentes plug and play sobre herdr (hc) para cualquier workspace. Siete roles con modelo, esfuerzo y skills por defecto, organizados en tres grupos (Negocio, Desarrollo, Diseño). Usar para instalar el equipo en un workspace nuevo, lanzarlo o arrancarlo con herdr, cambiar modelos/skills por rol, o cuando el usuario mencione herdr, hc, equipo de agentes, orquestador, plan/luna/sol/revisor/diseno/docs.
 ---
 
 # equipo-herdr
@@ -14,7 +14,8 @@ Kit global, con una única copia en `~/.agents/skills/equipo-herdr/`. Cada works
 | Negocio | `plan`: planifica y orquesta | Claude `claude-opus-5-5` | high | Sí | Sí |
 | Negocio | `docs`: documenta y responde al usuario sobre negocio y código | Codex `gpt-6-luna` | low | No | Sí |
 | Desarrollo | `luna`: codifica | Codex `gpt-6-luna` | high | No | No |
-| Desarrollo | `sol`: verifica tests y arquitectura | Codex `gpt-6.1-sol` | low | No | No |
+| Desarrollo | `haiku`: codifica cortes acotados o mecánicos | Claude `claude-haiku-5-5` | high | No | No |
+| Desarrollo | `sol`: verifica tests y arquitectura | Codex `gpt-6.1-sol` | medium | No | No |
 | Desarrollo | `revisor`: objetivos del plan, arquitectura y SOLID | Claude `claude-opus-5-5` | medium | No | No |
 | Diseño | `diseno`: UI/UX | Claude `claude-opus-5-5` | high | Sí | No |
 
