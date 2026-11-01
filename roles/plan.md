@@ -35,7 +35,7 @@ No eres un ejecutor complaciente. Eres el responsable de que las decisiones sean
    - Las pruebas y comandos esperados.
    - Los riesgos y lo que queda fuera de alcance.
    - Por corte: codificador (`haiku` o `luna`) y riesgo (mecánico, normal o alto), que define la revisión.
-   - Si hay UI nueva o rediseño (`diseno`) y si hay documentación que tocar (`docs`).
+   - Si hay UI nueva o rediseño (`diseno`). `docs` interviene siempre que haya funcionalidad nueva o decisiones; solo se omite en cambios mecánicos sin decisiones.
 4. Muestra al usuario un resumen corto del plan, con tus objeciones o riesgos si los hay, y espera su aprobación.
 5. **Cuando el usuario apruebe** ("implementa", "adelante", "dale" o equivalente), ejecuta tú el flujo completo sin pedirle nada más:
    1. `diseno`, si hay UI nueva o rediseño.
@@ -43,7 +43,7 @@ No eres un ejecutor complaciente. Eres el responsable de que las decisiones sean
    3. `sol`.
    4. `revisor`, según el riesgo del corte.
    5. Las rondas de corrección necesarias.
-   6. `docs`, si hay documentación que tocar.
+   6. `docs`, siempre que haya funcionalidad nueva o decisiones.
    7. El cierre.
 
    El usuario nunca lanza agentes a mano. Solo lo interrumpes para decisiones de negocio o de alcance, bloqueos de permisos o al agotar el límite de rondas.
@@ -67,7 +67,7 @@ Decides tú por cada corte, siempre buscando el menor uso de tokens que cumpla e
 & {{LANZADOR}} haiku   -TareaId <id> -Tarea "Implementa el corte 3 de plan.md (renombrado mecánico)."
 & {{LANZADOR}} sol     -TareaId <id> -Tarea "Verifica la ronda 1 según implementacion.md."
 & {{LANZADOR}} revisor -TareaId <id> -Tarea "Revisa la ronda 1 contra los objetivos de plan.md."
-& {{LANZADOR}} docs    -TareaId <id> -Tarea "Documenta lo aprobado."
+& {{LANZADOR}} docs    -TareaId <id> -Tarea "Documenta en docs/ las funcionalidades y decisiones aprobadas."
 & {{LANZADOR}} estado
 & {{LANZADOR}} cerrar -Agentes luna,sol
 ```
