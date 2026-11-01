@@ -101,3 +101,7 @@ Añade `-DryRun` a cualquier comando para ver lo que haría sin ejecutarlo.
 | `SKILL.md` | Instrucciones para agentes (Claude Code y Codex). |
 
 Más detalle en [SKILL.md](SKILL.md).
+
+## Licencia
+
+[MIT](LICENSE)
