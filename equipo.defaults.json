@@ -4,6 +4,29 @@
     "desarrollo": "{{NOMBRE}} Desarrollo",
     "diseno": "{{NOMBRE}} Diseño"
   },
+  "revision": {
+    "alcance": "Solo el cambio de la ronda: el diff contra la rama base y los archivos listados en implementacion.md. Lo que veas fuera del cambio va como observación fuera de alcance; no bloquea ni se devuelve al codificador.",
+    "umbrales": {
+      "complejidadCiclomaticaPorFuncion": 10,
+      "lineasPorArchivo": 400,
+      "parametrosPorFuncion": 4,
+      "anidamiento": 3,
+      "lineasDuplicadas": 8,
+      "consultasPorOperacion": 1,
+      "coberturaDelCambio": 80
+    },
+    "tolerancia": 20,
+    "bloqueante": [
+      "Violación de una regla de arquitectura o del AGENTS.md del repositorio.",
+      "Consulta o llamada remota dentro de un bucle (N+1).",
+      "Comportamiento nuevo o modificado sin prueba.",
+      "Umbral superado por encima de la tolerancia."
+    ],
+    "sugerencia": [
+      "Umbral superado dentro de la tolerancia.",
+      "Nombres, estilo y micro-optimizaciones sin impacto medible."
+    ]
+  },
   "roles": {
     "plan": {
       "grupo": "negocio", "cli": "claude", "modelo": "claude-opus-5-5", "esfuerzo": "high",
@@ -31,6 +54,15 @@
       "skills": [
         "`tdd`: obligatoria; ciclo rojo → verde → refactor en cada corte.",
         "`diagnose`: si el encargo es un bug."
+      ]
+    },
+    "haiku": {
+      "grupo": "desarrollo", "cli": "claude", "modelo": "claude-haiku-5-5", "esfuerzo": "high",
+      "remoto": false, "persistente": false,
+      "descripcion": "Codificador económico para cambios acotados o mecánicos",
+      "skills": [
+        "`tdd`: si el corte añade o cambia comportamiento.",
+        "`diagnose`: si el encargo es un bug acotado."
       ]
     },
     "sol": {
