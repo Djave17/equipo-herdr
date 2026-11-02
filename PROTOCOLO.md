@@ -12,7 +12,7 @@ Solo `plan` lanza agentes, y lo hace siempre con `{{LANZADOR}}`. Ningún otro ro
 3. **luna** o **haiku** (el codificador que elija `plan` para el corte) implementa con TDD y escribe `implementacion.md`, que incluye los archivos tocados y los comandos de prueba con su salida real.
 4. **sol** ejecuta las pruebas y verifica los principios de arquitectura. Escribe `verificacion-N.md` con el veredicto `APROBADO` o `RECHAZADO`.
 5. **revisor** (si el riesgo del corte lo requiere; ver *Revisión según riesgo*) compara el resultado con los objetivos del plan, la arquitectura y SOLID. Escribe `revision-N.md`. Si hay hallazgos, los **devuelve al codificador de la ronda** y se repite desde el paso 3.
-6. **docs** documenta lo aprobado en `docs/` de cada repositorio afectado (`features/`, `decisiones/`, `adr/`) y escribe `docs.md`. Interviene siempre que la tarea agregue o cambie una funcionalidad o tome decisiones; solo se omite en cambios mecánicos sin decisiones.
+6. **docs** documenta lo aprobado en `docs/` de cada repositorio afectado (`features/`, `decisiones/`, `adr/`, `clases/`, `diagramas/`) y escribe `docs.md`. Interviene siempre que la tarea agregue o cambie una funcionalidad o tome decisiones; solo se omite en cambios mecánicos que no tocan clases ni decisiones.
 7. **plan** verifica los artefactos y entrega un resumen al usuario.
 
 Se permiten como máximo 2 rondas de corrección por tarea; solo los hallazgos bloqueantes reabren ronda. Después, `plan` escala al usuario con los hallazgos pendientes.

@@ -43,6 +43,8 @@ La revisión depende del riesgo del corte: los mecánicos los revisa solo `sol`;
 | `docs/features/` | Qué hace cada funcionalidad, para qué sirve, cómo se usa y qué pruebas la verifican. |
 | `docs/decisiones/` | Decisiones de alcance, negocio o compromisos: alternativas, motivo, quién decidió y fecha. |
 | `docs/adr/` | Decisiones de arquitectura en formato ADR. |
+| `docs/clases/` | Por módulo de negocio (p. ej. `donaciones.md`): clases con atributos y métodos, agrupadas por capa. |
+| `docs/diagramas/` | Por módulo: diagrama de clases en Mermaid con relaciones y una sección `Cambios` con fecha y tarea. Además `general.md`: todos los módulos, sus dependencias y las clases principales, que también se actualiza con cada cambio entre módulos. |
 
 ## Commits y ramas
 

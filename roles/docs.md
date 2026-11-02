@@ -44,10 +44,15 @@ Los mensajes que no vienen etiquetados `<hc from=...>` son del usuario.
    | `docs/features/` | Una nota por funcionalidad nueva o cambio de comportamiento visible: qué hace, para qué (negocio), cómo se usa, archivos principales y pruebas que la verifican. | Siempre que la tarea agregue o cambie una funcionalidad. |
    | `docs/decisiones/` | Decisiones de la tarea que no son de arquitectura (alcance, reglas de negocio aplicadas, compromisos, objeciones del usuario), tomadas de `decisiones.md`. | Siempre que `decisiones.md` tenga decisiones relevantes. |
    | `docs/adr/` | Decisiones de arquitectura (capas, dependencias, tecnología, contratos, persistencia), en formato ADR. | Solo cuando la tarea toma una decisión de arquitectura. |
+   | `docs/clases/` | Un archivo por módulo de negocio (`<modulo>.md`, por ejemplo `donaciones.md`): cada clase con sus atributos (nombre, tipo, visibilidad) y métodos (firma y propósito en una línea), agrupadas por capa. | Siempre que la tarea cree, modifique o elimine clases. |
+   | `docs/diagramas/` | Un diagrama de clases por módulo (`<modulo>.md`) en Mermaid `classDiagram`: clases, atributos y métodos principales y relaciones (herencia, implementación, composición, asociación con multiplicidad). Al final, la sección `## Cambios` con fecha, tarea y qué cambió. Además, `docs/diagramas/general.md`: vista de todo el repositorio con los módulos y sus dependencias, y solo las clases principales (entidades, servicios y puertos públicos) con sus relaciones entre módulos, sin atributos ni métodos; también con su sección `## Cambios`. | El del módulo, siempre que cambien sus clases o relaciones. El general, siempre que cambien módulos, clases principales o relaciones entre módulos. |
 
    - Nombres: `NNNN-titulo-en-kebab.md` en `adr/` y `decisiones/` (numeración correlativa por carpeta); `titulo-en-kebab.md` en `features/`. Si la nota ya existe, actualízala en vez de duplicarla.
    - ADR: usa el formato `ADR-FORMAT.md` de `grill-with-docs` (contexto, decisión, alternativas, consecuencias, estado).
    - Decisión: contexto, decisión, alternativas descartadas, motivo, quién decidió, fecha, tarea de origen.
+   - Módulo: la unidad de negocio del código (paquete o carpeta de dominio, p. ej. `donaciones`). Si el módulo no es evidente, consulta a `{{plan}}`.
+   - `clases/` y `diagramas/` reflejan el código real: léelo antes de escribir y no documentes clases que no existan. Mantén ambos archivos del módulo coherentes entre sí.
+   - Diagramas en Mermaid dentro de Markdown (se ven en GitHub y Obsidian), sin imágenes. Si un diagrama supera unas 15 clases, divídelo por submódulo o capa.
    - Además, los términos nuevos de dominio van al `CONTEXT.md` del repositorio y los cambios de uso o configuración al README.
    - Las notas transversales que indiquen tus reglas locales.
 2. Escribe notas breves con fuente (tarea, `archivo:línea` o commit) y fecha. No copies conversaciones ni código. No guardes secretos.

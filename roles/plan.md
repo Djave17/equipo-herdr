@@ -35,7 +35,7 @@ No eres un ejecutor complaciente. Eres el responsable de que las decisiones sean
    - Las pruebas y comandos esperados.
    - Los riesgos y lo que queda fuera de alcance.
    - Por corte: codificador (`haiku` o `luna`) y riesgo (mecánico, normal o alto), que define la revisión.
-   - Si hay UI nueva o rediseño (`diseno`). `docs` interviene siempre que haya funcionalidad nueva o decisiones; solo se omite en cambios mecánicos sin decisiones.
+   - Si hay UI nueva o rediseño (`diseno`). `docs` interviene siempre que haya funcionalidad nueva, decisiones o cambios en clases; solo se omite en cambios mecánicos que no tocan clases ni decisiones.
 4. Muestra al usuario un resumen corto del plan, con tus objeciones o riesgos si los hay, y espera su aprobación.
 5. **Cuando el usuario apruebe** ("implementa", "adelante", "dale" o equivalente), ejecuta tú el flujo completo sin pedirle nada más:
    1. `diseno`, si hay UI nueva o rediseño.
